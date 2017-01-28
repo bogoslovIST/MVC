@@ -1,0 +1,23 @@
+<h1>Задачи</h1><br>
+<button id = 'show_div'>+</button>
+<% @projects.each do |project| %>
+	<h2><%= project.title %></h2>
+	<ul>
+		<% project.todos.each do |todo| %> 
+			<li><%= todo.text %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<div id = 'todo_creation'>
+	<h2>Новая задача</h2>
+	<%= form_for :todo, :html=> {:id => 'form'} do |f| %>
+		<%= f.text_field :text, placeholder: "Название задачи..."%>
+		<br>
+		<%= f.select(:project_id, @project_map) %>
+		
+		<br>
+		<%= link_to "ОТМЕНА", '#', :id => 'hide_div' %>
+		<%= link_to "ОК", '#', :id => 'submit_link' %>
+	<% end %>
+</div>

@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'todo#index'
+  
+  match '/', to: 'todo#create', via: :post
+
+	resources :projects do
+		resources :todos
+	end
 end
